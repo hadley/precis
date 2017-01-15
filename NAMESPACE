@@ -2,7 +2,9 @@
 
 S3method(precis,data.frame)
 S3method(precis_v,character)
+S3method(precis_v,default)
 S3method(precis_v,factor)
+S3method(precis_v,list)
 S3method(precis_v,logical)
 S3method(precis_v,numeric)
 S3method(precis_v,ordered)

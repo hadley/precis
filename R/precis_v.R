@@ -47,6 +47,17 @@ precis_v.ordered <- function(x, ..., width = 60) {
   show_distinct(x)
 }
 
+#' @export
+precis_v.default <- function(x, ..., width = 60) {
+  ""
+}
+
+#' @export
+precis_v.list <- function(x, ..., width = 60) {
+  types <- paste0("<", vapply(x, tibble::obj_sum, character(1)), ">")
+  show_distinct(types, sort = TRUE)
+}
+
 show_distinct <- function(x, max_n = 4, sort = FALSE) {
   tbl <- table(x, useNA = "ifany")
 
