@@ -14,6 +14,10 @@ precis_v <- function(x, ..., width = 60) {
 
 #' @export
 precis_v.numeric <- function(x, ..., width = 60) {
+  if (n_distinct(x) < 5) {
+    return(show_distinct(x))
+  }
+
   sum <- format(signif(stats::fivenum(x[is.finite(x)]), 3), width = 5)
 
    paste0(
@@ -21,6 +25,16 @@ precis_v.numeric <- function(x, ..., width = 60) {
     n_na(x),
     n_inf(x)
    )
+}
+
+#' @export
+precis_v.logical <- function(x, ..., width = 60) {
+  show_distinct(x)
+}
+
+show_distinct <- function(x) {
+  tbl <- table(x, useNA = "ifany")
+  paste0(str_trunc(names(tbl), 20), " (", tbl, ")", collapse = " ")
 }
 
 n_na <- function(x) {
