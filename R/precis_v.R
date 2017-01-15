@@ -32,9 +32,38 @@ precis_v.logical <- function(x, ..., width = 60) {
   show_distinct(x)
 }
 
-show_distinct <- function(x) {
+#' @export
+precis_v.character <- function(x, ..., width = 60) {
+  show_distinct(x, sort = TRUE)
+}
+
+#' @export
+precis_v.factor <- function(x, ..., width = 60) {
+  show_distinct(x, sort = TRUE)
+}
+
+#' @export
+precis_v.ordered <- function(x, ..., width = 60) {
+  show_distinct(x)
+}
+
+show_distinct <- function(x, max_n = 4, sort = FALSE) {
   tbl <- table(x, useNA = "ifany")
-  paste0(str_trunc(names(tbl), 20), " (", tbl, ")", collapse = " ")
+
+  if (sort) {
+    tbl <- sort(tbl)
+  }
+  extra <- length(tbl) > max_n
+  if (extra) {
+    tbl <- tbl[seq_len(max_n)]
+  }
+
+  nms <- names(tbl)
+
+  paste0(
+    paste0(str_trunc(nms, 20), " (", tbl, ")", collapse = " "),
+    if (extra) " ..."
+  )
 }
 
 n_na <- function(x) {

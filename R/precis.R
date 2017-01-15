@@ -13,7 +13,7 @@ precis <- function(x, ..., width = 60) {
 precis.data.frame <- function(x, ..., width = 60) {
   precis <- lapply(x, precis_v, ...)
   names <- format(str_trunc(names(x), 20))
-  types <- paste0("<", vapply(x, tibble::type_sum, character(1)), ">")
+  types <- format(paste0("<", vapply(x, tibble::type_sum, character(1)), ">"))
 
   add_blanks <- function(x, n) {
     c(x, rep("", n - 1))
