@@ -3,7 +3,7 @@
 precis
 ======
 
-[![Travis-CI Build Status](https://travis-ci.org/hadley/precis.svg?branch=master)](https://travis-ci.org/hadley/precis)
+[![Travis-CI Build Status](https://travis-ci.org/hadley/precis.svg?branch=master)](https://travis-ci.org/hadley/precis) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/precis)](https://cran.r-project.org/package=precis)
 
 The precis package is designed to replace `base::summary()`
 
