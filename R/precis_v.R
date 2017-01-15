@@ -14,10 +14,10 @@ precis_v <- function(x, ..., width = 60) {
 
 #' @export
 precis_v.numeric <- function(x, ..., width = 60) {
-   sum <- fivenum(x, na.rm = TRUE)
+  sum <- format(signif(stats::fivenum(x[is.finite(x)]), 3), width = 5)
 
    paste0(
-    sum[1], "-[", sum[2], " (", sum[3], ") ", sum[4], "]-", sum[5],
+    sum[1], " [", sum[2], " (", sum[3], ") ", sum[4], "] ", sum[5],
     n_na(x),
     n_inf(x)
    )
@@ -28,7 +28,7 @@ n_na <- function(x) {
   if (n == 0)
     return("")
 
-  paste0(" NA: ", n)
+  paste0(" (", n, " NA)")
 }
 
 n_inf <- function(x) {
@@ -37,5 +37,5 @@ n_inf <- function(x) {
   if (n == 0)
     return("")
 
-  paste0(" Inf: ", n)
+  paste0(" (", n, " Inf)")
 }
