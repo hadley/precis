@@ -21,6 +21,7 @@ precis.data.frame <- function(x, ..., width = 60) {
   lengths <- vapply(precis, length, integer(1))
   names <- unlist(Map(add_blanks, names, lengths))
 
+  cat(tibble::tbl_sum(x), "\n")
   cat(paste0(names, " ", types, " ", unlist(precis), "\n"), sep = "")
   invisible(x)
 }
