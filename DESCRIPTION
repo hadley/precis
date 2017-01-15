@@ -1,12 +1,12 @@
 Package: precis
-Title: What the Package Does (one line, title case)
+Title: Succintly Summarise Data Frames
 Version: 0.0.0.9000
 Authors@R: c(
     person("Hadley", "Wickham", , "hadley@rstudio.com", role = c("aut", "cre")),
     person("RStudio", role = "cph")
   )
-Description: What the package does (one paragraph).
-Depends: R (>= 3.3.2)
+Description: An alternative to summary() that works with dplyr's grouped 
+   data frames, and is primarily horizontal not vertical.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
