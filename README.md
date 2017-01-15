@@ -46,7 +46,4 @@ precis is not currently available on CRAN, but you can install it with:
 ``` r
 # install.packages("devtools")
 devtools::install_github("hadley/precis")
-#> Using GitHub PAT from envvar GITHUB_PAT
-#> Skipping install of 'precis' from a github remote, the SHA1 (883cd9e0) has not changed since last install.
-#>   Use `force = TRUE` to force installation
 ```

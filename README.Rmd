@@ -30,7 +30,7 @@ precis(ggplot2::diamonds)
 
 precis is not currently available on CRAN, but you can install it with:
 
-```{r}
+```{r, eval = FALSE}
 # install.packages("devtools")
 devtools::install_github("hadley/precis")
 ```
