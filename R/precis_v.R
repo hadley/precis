@@ -3,7 +3,7 @@
 #' @param x A vector
 #' @param ... Other arguments potentially used by methods
 #' @param width Maximum width for each line.
-#' @return A character vector, with one entry for each line.
+#' @return A string (a character vector of length 1)
 #' @export
 #' @keywords internal
 #' @examples

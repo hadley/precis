@@ -14,7 +14,7 @@ precis_v(x, ..., width = 60)
 \item{width}{Maximum width for each line.}
 }
 \value{
-A character vector, with one entry for each line.
+A string (a character vector of length 1)
 }
 \description{
 Succint summary of a vector

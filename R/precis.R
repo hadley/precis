@@ -12,17 +12,36 @@ precis <- function(x, ..., width = 60) {
 
 #' @export
 precis.data.frame <- function(x, ..., width = 60) {
-  precis <- lapply(x, precis_v, ...)
-  names <- format(str_trunc(names(x), 20))
-  types <- format(paste0("<", vapply(x, tibble::type_sum, character(1)), ">"))
+  out <- tibble::tibble(
+    name = names(x),
+    type = vapply(x, tibble::type_sum, character(1)),
+    precis = vapply(x, precis_v, ..., FUN.VALUE = character(1))
+  )
+  attr(out, "obj_sum") <- tibble::obj_sum(x)
+  class(out) <- c("precis", "tbl_df", "tbl", "data.frame")
+  out
+}
 
-  add_blanks <- function(x, n) {
-    c(x, rep("", n - 1))
-  }
-  lengths <- vapply(precis, length, integer(1))
-  names <- unlist(Map(add_blanks, names, lengths))
+globalVariables(".")
 
-  cat(tibble::tbl_sum(x), "\n")
-  cat(paste0(names, " ", types, " ", unlist(precis), "\n"), sep = "")
+#' @export
+precis.grouped_df <- function(x, ..., width = 60) {
+  out <- dplyr::do(x, precis(., ..., width = width))
+  out <- dplyr::ungroup(out)
+  out <- dplyr::arrange_(out, ~name)
+  out <- dplyr::select_(out, ~name, ~dplyr::everything())
+
+  attr(out, "obj_sum") <- tibble::obj_sum(x)
+  class(out) <- c("precis", "tbl_df", "tbl", "data.frame")
+  out
+}
+
+#' @export
+print.precis <- function(x, ...) {
+  cat("# ", attr(x, "obj_sum"), "\n", sep = "")
+
+  tm <- tibble::trunc_mat(x, n = Inf)
+  print(tm$table)
+
   invisible(x)
 }

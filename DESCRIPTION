@@ -16,3 +16,4 @@ RoxygenNote: 5.0.1
 Imports: tibble
 URL: https://github.com/hadley/precis
 BugReports: https://github.com/hadley/precis/issues
+Suggests: dplyr
