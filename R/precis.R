@@ -5,6 +5,7 @@
 #' @export
 #' @examples
 #' precis(mtcars)
+#' precis(mtcars, histogram = TRUE)
 precis <- function(x, ..., width = 60) {
   UseMethod("precis")
 }

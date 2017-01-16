@@ -13,18 +13,21 @@ precis_v <- function(x, ..., width = 60) {
 }
 
 #' @export
-precis_v.numeric <- function(x, ..., width = 60) {
-  if (n_distinct(x) < 5) {
+precis_v.numeric <- function(x, ..., histogram = FALSE, width = 60) {
+
+  if (!histogram && n_distinct(x) < 5) {
     return(show_distinct(x))
   }
 
-  sum <- format(signif(stats::fivenum(x[is.finite(x)]), 3), width = 5)
-
-   paste0(
-    sum[1], " [", sum[2], " (", sum[3], ") ", sum[4], "] ", sum[5],
-    n_na(x),
-    n_inf(x)
-   )
+  x_finite <- x[is.finite(x)]
+  if (histogram) {
+    rng <- format(signif(range(x_finite), 3), width = 5)
+    dist <- paste0(rng[1], " ", histospark(x_finite, width = 15), " ", rng[2])
+  } else {
+    sum <- format(signif(stats::fivenum(x_finite), 3), width = 5)
+    dist <- paste0(sum[1], " [", sum[2], " (", sum[3], ") ", sum[4], "] ", sum[5])
+  }
+   paste0(dist, n_na(x), n_inf(x))
 }
 
 #' @export

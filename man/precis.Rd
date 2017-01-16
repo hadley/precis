@@ -18,5 +18,6 @@ Display a succinct summary of a data frame
 }
 \examples{
 precis(mtcars)
+precis(mtcars, histogram = TRUE)
 }
 
