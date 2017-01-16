@@ -6,7 +6,9 @@ Authors@R: c(
     person("RStudio", role = "cph")
   )
 Description: An alternative to summary() that works with dplyr's grouped
-    data frames, and is primarily horizontal not vertical.
+    data frames, and is primarily horizontal not vertical. It has methods
+    for the most common types of vectors and can easily be extended with
+    more.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
